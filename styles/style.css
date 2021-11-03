@@ -3,6 +3,8 @@
   --primary-color-blue: 0, 158, 255;
   --primary-color-purple: 89, 58, 154;
 
+  --neutral-color: #ffffff;
+
   --primary-font: "Bebas Neue", cursive;
   --second-font: "Be Vietnam", sans-serif;
 
@@ -33,4 +35,8 @@ body {
 
 .text {
   font-family: var(--second-font);
+}
+
+.text_white {
+  color: var(--neutral-color);
 }
