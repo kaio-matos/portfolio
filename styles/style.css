@@ -41,3 +41,10 @@ body {
 .text_white {
   color: var(--neutral-color);
 }
+
+.arrow_text {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+}
