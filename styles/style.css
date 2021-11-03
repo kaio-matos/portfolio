@@ -19,6 +19,14 @@
 
 body {
   height: 100vh;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
 }
 
 .bg_lr {
@@ -31,6 +39,7 @@ body {
 
 .title {
   font-family: var(--primary-font);
+  font-weight: 500;
 }
 
 .text {
@@ -47,4 +56,31 @@ body {
   align-items: center;
 
   gap: 1rem;
+}
+
+.animated_title {
+  transition: margin-left 1s, transform 500ms;
+  position: relative;
+  width: fit-content;
+}
+
+.animated_title:hover {
+  margin-left: 0.6em;
+  transform: skewX(-5deg);
+}
+
+.animated_title::after {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  content: "";
+  height: 5px;
+  background-color: white;
+  width: 0;
+
+  transition: 1s;
+}
+
+.animated_title:hover::after {
+  width: 100%;
 }
