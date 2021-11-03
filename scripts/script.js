@@ -5,6 +5,6 @@ async function getRepositories() {
   console.log(repos);
 }
 
-(() => {
-  getRepositories();
-})();
+// (() => {
+//   getRepositories();
+// })();

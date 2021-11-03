@@ -5,12 +5,26 @@
 
   --primary-font: "Bebas Neue", cursive;
   --second-font: "Be Vietnam", sans-serif;
+
+  --bg-gradient: #009eff 0%, #593a9a 100%;
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
+.bg_lr {
+  background: linear-gradient(135deg, var(--bg-gradient));
+}
+
+.bg_rl {
+  background: linear-gradient(315deg, var(--bg-gradient));
 }
 
 .title {
