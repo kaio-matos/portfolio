@@ -104,6 +104,43 @@
   background-image: url("https://avatars.githubusercontent.com/u/72654258?s=400&u=c4352a61d6126221fd185db0ec131414507e049b&v=4");
 }
 
+.X_icon {
+  --width: 10px;
+  --height: 50px;
+  --animation-time: 5s;
+  position: relative;
+}
+
+.X_icon::before {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: var(--neutral-color);
+  width: var(--width);
+  height: var(--height);
+  transform: rotate(110deg);
+  animation: bigXanimation var(--animation-time) infinite ease alternate;
+}
+
+.X_icon::after {
+  content: "";
+  display: block;
+  background-color: var(--neutral-color);
+  width: var(--width);
+  height: var(--height);
+  transform: rotate(35deg);
+  animation: bigXanimation var(--animation-time) infinite ease-in-out;
+}
+
+@keyframes bigXanimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes circleAnimation {
   0% {
     clip-path: circle(85% at 0% 0%);
