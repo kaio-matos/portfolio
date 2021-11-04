@@ -53,8 +53,9 @@
   border-radius: 50%;
   transform: translate(-50%, -50%);
 
-  outline: 5px solid var(--neutral-color);
-  clip-path: polygon(-5% -5%, -5% 100%, 94% 62%, 100% -5%);
+  outline: 6px solid var(--neutral-color);
+  clip-path: circle(85% at 0% 0%);
+  animation: circleAnimation 10s infinite;
 }
 
 .greater_circle::before {
@@ -62,8 +63,8 @@
   display: block;
   position: absolute;
 
-  top: 71%;
-  left: 4%;
+  top: 70%;
+  left: 3%;
 
   width: 1em;
   height: 1em;
@@ -82,8 +83,10 @@
 
   border-radius: 50%;
 
-  outline: 5px solid var(--neutral-color);
-  clip-path: polygon(-8.5% 20.5%, 3% 108%, 93% 107%, 110% 35%, 58% 32%);
+  outline: 10px solid var(--neutral-color);
+  clip-path: circle(90% at 0% 0%);
+  transition: outline 2s;
+  animation: circleAnimation 10s infinite reverse;
 }
 
 .photo_circle {
@@ -99,4 +102,22 @@
 
   background-repeat: no-repeat;
   background-image: url("https://avatars.githubusercontent.com/u/72654258?s=400&u=c4352a61d6126221fd185db0ec131414507e049b&v=4");
+}
+
+@keyframes circleAnimation {
+  0% {
+    clip-path: circle(85% at 0% 0%);
+  }
+  25% {
+    clip-path: circle(85% at 100% 0%);
+  }
+  50% {
+    clip-path: circle(85% at 100% 100%);
+  }
+  75% {
+    clip-path: circle(85% at 0% 100%);
+  }
+  100% {
+    clip-path: circle(85% at 0% 0%);
+  }
 }
