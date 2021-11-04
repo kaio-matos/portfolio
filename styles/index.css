@@ -1,20 +1,102 @@
+.main_container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.left_side {
+  width: 100%;
+}
+
 .menu {
   font-size: 5rem;
-  margin-top: 25%;
-  width: fit-content;
-  margin-left: 7.5%;
-
-  transform: translateY(-50%);
+  margin-left: 20%;
+  width: 100%;
 }
 
 .names {
   position: absolute;
   left: 7.5%;
   top: 50px;
+  width: 100%;
   height: calc(100vh - 100px);
 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   z-index: -1;
+}
+
+.right_side {
+  width: 100%;
+}
+
+.photo_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle_container {
+  width: fit-content;
+  position: relative;
+}
+
+.greater_circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 450px;
+  height: 450px;
+
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
+  outline: 5px solid var(--neutral-color);
+  clip-path: polygon(-5% -5%, -5% 100%, 94% 62%, 100% -5%);
+}
+
+.greater_circle::before {
+  content: "";
+  display: block;
+  position: absolute;
+
+  top: 71%;
+  left: 4%;
+
+  width: 1em;
+  height: 1em;
+
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+
+  border: 8px solid var(--neutral-color);
+}
+
+.inner_circle {
+  top: 0;
+
+  width: 350px;
+  height: 350px;
+
+  border-radius: 50%;
+
+  outline: 5px solid var(--neutral-color);
+  clip-path: polygon(-8.5% 20.5%, 3% 108%, 93% 107%, 110% 35%, 58% 32%);
+}
+
+.photo_circle {
+  display: flex;
+  position: absolute;
+  top: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+  border-radius: 50%;
+
+  background-repeat: no-repeat;
+  background-image: url("https://avatars.githubusercontent.com/u/72654258?s=400&u=c4352a61d6126221fd185db0ec131414507e049b&v=4");
 }

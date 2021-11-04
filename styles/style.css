@@ -62,6 +62,7 @@ a {
   transition: margin-left 1s, transform 500ms;
   position: relative;
   width: fit-content;
+  width: -moz-fit-content;
 }
 
 .animated_title:hover {
