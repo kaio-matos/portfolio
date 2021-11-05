@@ -1,3 +1,12 @@
+.header {
+  display: grid;
+  align-items: flex-start;
+  grid-template: 100% / 1fr 1fr 1fr;
+
+  margin-top: 3rem;
+  padding: 0rem 3rem;
+}
+
 .nav {
   --ballSize: 40px;
   --verticalDistance: calc(0.9 * var(--ballSize));
@@ -7,7 +16,6 @@
   flex-direction: column;
   align-items: center;
   gap: var(--verticalDistance);
-  margin-top: 2rem;
 }
 /* 
 
