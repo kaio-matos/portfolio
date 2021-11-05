@@ -5,7 +5,7 @@
 
   --neutral-color: #ffffff;
 
-  --primary-font: "Bebas Neue", cursive;
+  --primary-font: "Bebas Neue", sans-serif;
   --second-font: "Be Vietnam", sans-serif;
 
   --bg-gradient: #009eff 0%, #593a9a 100%;
@@ -28,7 +28,13 @@ a {
   text-decoration: none;
   color: inherit;
 }
+/* 
 
+
+
+
+*/
+/* -------- Same backgrounds colors with reverse directions --------  */
 .bg_lr {
   background: linear-gradient(135deg, var(--bg-gradient));
 }
@@ -36,7 +42,13 @@ a {
 .bg_rl {
   background: linear-gradient(315deg, var(--bg-gradient));
 }
+/* 
 
+
+
+
+*/
+/* -------- Some general classes to keep the style pattern -------- */
 .title {
   font-family: var(--primary-font);
   font-weight: 500;
@@ -85,7 +97,13 @@ a {
 .animated_title:hover::after {
   width: 100%;
 }
+/* 
 
+
+
+
+*/
+/* -------- Pages transitions -------- */
 .page {
   opacity: 0;
 }
@@ -105,7 +123,13 @@ a {
 .slide_right {
   animation: slideRight 0.8s ease forwards 0.5s;
 }
+/* 
 
+
+
+
+*/
+/* -------- Keyframes for pages transition -------- */
 @keyframes slideDown {
   0% {
     transform: translateY(-300px);
