@@ -1,4 +1,5 @@
 :root {
+  /* RGB values */
   --text-color: 64, 64, 64;
   --primary-color-blue: 0, 158, 255;
   --primary-color-purple: 89, 58, 154;
@@ -8,7 +9,8 @@
   --primary-font: "Bebas Neue", sans-serif;
   --second-font: "Be Vietnam", sans-serif;
 
-  --bg-gradient: #009eff 0%, #593a9a 100%;
+  --bg-gradient: rgb(var(--primary-color-blue)) 0%,
+    rgb(var(--primary-color-purple)) 100%;
 }
 
 * {
@@ -49,11 +51,47 @@ a {
 
 */
 /* -------- Some general classes to keep the style pattern -------- */
+/* Titles */
 .title {
   font-family: var(--primary-font);
   font-weight: 500;
 }
 
+.page_title {
+  font-size: 5rem;
+  width: fit-content;
+  position: relative;
+  color: rgb(var(--primary-color-purple));
+}
+
+.page_title_bg::before {
+  content: "";
+  display: block;
+  position: absolute;
+
+  height: 125%;
+  transform: translateY(-14%); /* Eye adjustment to fit font-family height */
+
+  background-color: var(--neutral-color);
+  z-index: -1;
+}
+
+.page_title_bg-before::before {
+  width: 48%;
+  left: 0;
+}
+
+.page_title_bg-middle::before {
+  width: 48%;
+  left: 25%;
+}
+
+.page_title_bg-after::before {
+  width: 48%;
+  right: 0;
+}
+
+/* Simple Texts */
 .text {
   font-family: var(--second-font);
   font-weight: lighter;
