@@ -9,6 +9,8 @@
   --primary-font: "Bebas Neue", sans-serif;
   --second-font: "Be Vietnam", sans-serif;
 
+  --page-transition-offset: 45vw;
+
   --bg-gradient: rgb(var(--primary-color-blue)) 0%,
     rgb(var(--primary-color-purple)) 100%;
 }
@@ -170,7 +172,7 @@ a {
 /* -------- Keyframes for pages transition -------- */
 @keyframes slideDown {
   0% {
-    transform: translateY(-300px);
+    transform: translateY(calc(-1 * var(--page-transition-offset)));
   }
   50% {
     opacity: 1;
@@ -183,7 +185,7 @@ a {
 
 @keyframes slideUp {
   0% {
-    transform: translateY(300px);
+    transform: translateY(var(--page-transition-offset));
   }
   50% {
     opacity: 1;
@@ -196,7 +198,7 @@ a {
 
 @keyframes slideLeft {
   0% {
-    transform: translateX(-300px);
+    transform: translateX(calc(-1 * var(--page-transition-offset)));
   }
   50% {
     opacity: 1;
@@ -209,7 +211,7 @@ a {
 
 @keyframes slideRight {
   0% {
-    transform: translateX(300px);
+    transform: translateX(var(--page-transition-offset));
   }
   50% {
     opacity: 1;
