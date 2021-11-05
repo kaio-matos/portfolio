@@ -22,9 +22,9 @@
 }
 
 body {
-  height: 100vh;
-  max-height: 100%;
-  overflow: hidden;
+  min-height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -41,6 +41,7 @@ a {
 /* -------- Same backgrounds colors with reverse directions --------  */
 .bg_lr {
   background: linear-gradient(135deg, var(--bg-gradient));
+  background-repeat: no-repeat;
 }
 
 .bg_rl {
