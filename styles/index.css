@@ -3,7 +3,13 @@
   align-items: center;
   height: 100%;
 }
+/* 
 
+
+
+
+*/
+/* -------- Menu side -------- */
 .left_side {
   width: 100%;
 }
@@ -26,7 +32,13 @@
   justify-content: space-between;
   z-index: -1;
 }
+/* 
 
+
+
+
+*/
+/* -------- Photo side -------- */
 .right_side {
   width: 100%;
 }
@@ -45,6 +57,7 @@
 }
 
 .circle_container {
+  width: -moz-fit-content;
   width: fit-content;
   position: relative;
 }
@@ -138,7 +151,13 @@
   transform: rotate(35deg);
   animation: bigXanimation var(--animation-time) infinite ease-in-out;
 }
+/* 
 
+
+
+
+*/
+/* -------- X Animations and Circle Animations -------- */
 @keyframes bigXanimation {
   0% {
     transform: rotate(0deg);
