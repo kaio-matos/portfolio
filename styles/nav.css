@@ -1,13 +1,13 @@
 .nav {
   --ballSize: 40px;
-  --verticalDistance: 2rem;
-  --horizontalDistance: 3rem;
+  --verticalDistance: calc(0.9 * var(--ballSize));
+  --horizontalDistance: calc(1.2 * var(--ballSize));
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--verticalDistance);
-  margin: 8rem 5rem;
+  margin-top: 2rem;
 }
 /* 
 
