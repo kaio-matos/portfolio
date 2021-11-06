@@ -25,18 +25,12 @@ function Card({ name, description }) {
   cardInfo.classList.add("card_info");
 
   // Image
-  const img = document.createElement("img");
-  img.src = "https://source.unsplash.com/random"; // For now
-  img.alt = name;
+  const img = CardImage("https://source.unsplash.com/random", name); // For now
 
   cardImageContainer.appendChild(img);
 
   // Infos
-  const h2 = document.createElement("h2");
-  const title = document.createTextNode(name);
-
-  h2.appendChild(title);
-  h2.classList.add("card_title", "title", "text_gray");
+  const h2 = CardTitle(name);
 
   cardInfo.appendChild(h2);
 
@@ -63,24 +57,12 @@ function HoverCard({
   cardInfo.classList.add("card_info");
 
   // Image
-  const img = document.createElement("img");
-  img.src = "https://source.unsplash.com/random"; // For now
-  img.alt = name;
-
+  const img = CardImage("https://source.unsplash.com/random", name); // For now
   cardImageContainer.appendChild(img);
 
   // Infos
-  const h2 = document.createElement("h2");
-  const title = document.createTextNode(name);
-
-  h2.appendChild(title);
-  h2.classList.add("card_title", "title", "text_gray");
-
-  const descriptionDiv = document.createElement("div");
-  const descText = document.createTextNode(description);
-
-  descriptionDiv.appendChild(descText);
-  descriptionDiv.classList.add("card_description", "text_gray", "text");
+  const h2 = CardTitle(name);
+  const descriptionDiv = CardDescription(description);
 
   cardInfo.appendChild(h2);
   cardInfo.appendChild(descriptionDiv);
@@ -88,4 +70,30 @@ function HoverCard({
   card.appendChild(cardImageContainer);
   card.appendChild(cardInfo);
   return card;
+}
+
+function CardDescription(description) {
+  const descriptionDiv = document.createElement("div");
+  const descText = document.createTextNode(description);
+
+  descriptionDiv.appendChild(descText);
+  descriptionDiv.classList.add("card_description", "text_gray", "text");
+  return descriptionDiv;
+}
+
+function CardTitle(name) {
+  const h2 = document.createElement("h2");
+  const title = document.createTextNode(name);
+
+  h2.appendChild(title);
+  h2.classList.add("card_title", "title", "text_gray");
+
+  return h2;
+}
+
+function CardImage(link, name) {
+  const img = document.createElement("img");
+  img.src = link;
+  img.alt = name;
+  return img;
 }
