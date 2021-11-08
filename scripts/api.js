@@ -1,3 +1,5 @@
+import { Snackbar } from "./Snackbar.js";
+
 /**
  * Class that provides functions for github API requests
  */
@@ -7,14 +9,16 @@ class GithubAPI {
 
   async getRepos() {
     try {
-      const raw = await fetch(`${this.api}/users/${this.username}/repos`, {
-        method: "GET",
-      });
-
+      const raw = await fetch(`${this.api}/users/${this.username}/repos`);
       const repos = await raw.json();
 
       return repos;
     } catch (err) {
+      new Snackbar(
+        "Não foi possível buscar os repositórios",
+        "error"
+      ).showAndHide();
+
       console.log(err);
       return [];
     }
