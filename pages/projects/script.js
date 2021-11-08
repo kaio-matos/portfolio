@@ -4,7 +4,7 @@ import { ghApi } from "../../scripts/api.js";
   async function requestData() {
     let repos = JSON.parse(localStorage.getItem("repositories"));
 
-    if (repos === null) {
+    if (repos === null || repos.length === 0) {
       repos = await ghApi.getRepos();
 
       for (let i in repos) {
@@ -12,6 +12,7 @@ import { ghApi } from "../../scripts/api.js";
           repos[i].name,
           repos[i].default_branch
         );
+
         repos[i] = { ...repos[i], imageSrc: image };
       }
 
@@ -46,7 +47,7 @@ function Card({ name, description, imageSrc }) {
   cardInfo.classList.add("card_info");
 
   // Image
-  const img = CardImage(imageSrc, name); // For now
+  const img = CardImage(imageSrc, name);
   cardImageContainer.appendChild(img);
 
   // Infos
@@ -112,8 +113,16 @@ function CardTitle(name) {
 }
 
 function CardImage(link, name) {
-  const img = document.createElement("img");
-  img.src = link;
-  img.alt = name;
-  return img;
+  if (link) {
+    const img = document.createElement("img");
+    img.src = link;
+    img.alt = name;
+    return img;
+  } else {
+    const span = document.createElement("span");
+    span.classList.add("text");
+    const text = document.createTextNode("Não há imagem");
+    span.appendChild(text);
+    return span;
+  }
 }

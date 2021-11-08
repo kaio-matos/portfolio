@@ -6,28 +6,39 @@ class GithubAPI {
   api = "https://api.github.com";
 
   async getRepos() {
-    const raw = await fetch(`${this.api}/users/${this.username}/repos`, {
-      method: "GET",
-    });
+    try {
+      const raw = await fetch(`${this.api}/users/${this.username}/repos`, {
+        method: "GET",
+      });
 
-    const repos = await raw.json();
-    return repos;
+      const repos = await raw.json();
+
+      return repos;
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
   }
 
   async getImage(repoName, branch) {
     let url = "";
-    const raw = await fetch(
-      `${this.api}/repos/kaio-matos/${repoName}/git/trees/${branch}`
-    );
-    const { tree } = await raw.json();
 
-    for (let file of tree) {
-      if (file.path === "README") {
-        const raw = await fetch(file.url);
-        const { tree: images } = await raw.json();
+    try {
+      const raw = await fetch(
+        `${this.api}/repos/kaio-matos/${repoName}/git/trees/${branch}`
+      );
+      const { tree: repositoryTree } = await raw.json();
 
-        url = `https://raw.githubusercontent.com/kaio-matos/${repoName}/${branch}/README/${images[0].path}`;
+      for (let file of repositoryTree) {
+        if (file.path === "README") {
+          const raw = await fetch(file.url);
+          const { tree: images } = await raw.json();
+          url = `https://raw.githubusercontent.com/kaio-matos/${repoName}/${branch}/README/${images[0].path}`;
+        }
       }
+    } catch (err) {
+      console.log(err);
+      return "";
     }
 
     return url;

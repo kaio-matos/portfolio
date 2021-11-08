@@ -5,8 +5,9 @@ body {
 .cards_container {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 3rem;
   --name-color: #404040;
   padding: 1rem 2rem;
 }
@@ -16,7 +17,7 @@ body {
   flex-direction: column;
   position: relative;
 
-  width: 19.125rem;
+  width: 17.125rem;
   height: 12.75rem;
 
   background-color: var(--neutral-color);
@@ -27,6 +28,11 @@ body {
 }
 
 .card_image_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-color);
+
   height: 10rem;
   position: relative;
   overflow: hidden;
