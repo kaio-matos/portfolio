@@ -5,6 +5,7 @@
   --primary-color-purple: 89, 58, 154;
 
   --neutral-color: #ffffff;
+  --error-color: #d74545;
 
   --primary-font: "Bebas Neue", sans-serif;
   --second-font: "Be Vietnam", sans-serif;
@@ -137,6 +138,26 @@ a {
 
 .animated_title:hover::after {
   width: 100%;
+}
+
+/* Snackbar */
+.snackbar {
+  padding: 1rem;
+  width: fit-content;
+  border-radius: 1rem;
+  font-weight: bold;
+  opacity: 0;
+  transform: translateX(-150%);
+  transition: opacity 2s, transform 500ms;
+}
+
+.snackbar-error {
+  background-color: var(--error-color);
+}
+
+.snackbar_on {
+  transform: translateX(0%);
+  opacity: 1;
 }
 /* 
 
