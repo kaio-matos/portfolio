@@ -1,20 +1,41 @@
 import { ghApi } from "../../scripts/api.js";
 
 (async () => {
+  async function requestData() {
+    let repos = JSON.parse(localStorage.getItem("repositories"));
+
+    if (repos === null) {
+      repos = await ghApi.getRepos();
+
+      for (let i in repos) {
+        const image = await ghApi.getImage(
+          repos[i].name,
+          repos[i].default_branch
+        );
+        repos[i] = { ...repos[i], imageSrc: image };
+      }
+
+      localStorage.setItem("repositories", JSON.stringify(repos));
+    }
+
+    return repos;
+  }
+
   const container = document.getElementsByClassName("cards_container")[0];
-  const repos = await ghApi.getRepos();
+  const repos = await requestData();
+
   createCards(repos, container);
 })();
 
 function createCards(repos, element) {
-  repos.forEach((repo) => {
+  repos.forEach(async (repo) => {
     const card = Card(repo);
     card.appendChild(HoverCard(repo));
     element.appendChild(card);
   });
 }
 
-function Card({ name, description }) {
+function Card({ name, description, imageSrc }) {
   // Containers
   const card = document.createElement("div");
   const cardImageContainer = document.createElement("div");
@@ -25,8 +46,7 @@ function Card({ name, description }) {
   cardInfo.classList.add("card_info");
 
   // Image
-  const img = CardImage("https://source.unsplash.com/random", name); // For now
-
+  const img = CardImage(imageSrc, name); // For now
   cardImageContainer.appendChild(img);
 
   // Infos
@@ -44,8 +64,8 @@ function HoverCard({
   description,
   topics,
   homepage,
-  html_url,
   language,
+  imageSrc,
 }) {
   // Containers
   const card = document.createElement("div");
@@ -57,7 +77,7 @@ function HoverCard({
   cardInfo.classList.add("card_info");
 
   // Image
-  const img = CardImage("https://source.unsplash.com/random", name); // For now
+  const img = CardImage(imageSrc, name);
   cardImageContainer.appendChild(img);
 
   // Infos
