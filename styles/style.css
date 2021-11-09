@@ -10,7 +10,8 @@
   --error-color: #d74545;
 
   --primary-font: "Bebas Neue", sans-serif;
-  --second-font: "Be Vietnam", sans-serif;
+  --second-font: "Reem Kufi", sans-serif;
+  --third-font: "Be Vietnam", sans-serif;
 
   --page-transition-offset: 45vw;
 
@@ -99,10 +100,14 @@ a {
   width: 48%;
   right: 0;
 }
+/* Sub titles */
+.subtitle {
+  font-family: var(--second-font);
+}
 
 /* Simple Texts */
 .text {
-  font-family: var(--second-font);
+  font-family: var(--third-font);
   font-weight: lighter;
 }
 
