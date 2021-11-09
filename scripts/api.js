@@ -1,4 +1,5 @@
 import { Snackbar } from "./Snackbar.js";
+import { Loading } from "./Loading.js";
 
 /**
  * Class that provides functions for github API requests
@@ -6,6 +7,32 @@ import { Snackbar } from "./Snackbar.js";
 class GithubAPI {
   username = "kaio-matos";
   api = "https://api.github.com";
+
+  async getReposImagedAndLanguages() {
+    const loading = new Loading().on();
+    let repos = JSON.parse(localStorage.getItem("repositories"));
+
+    if (repos === null || repos.length === 0) {
+      repos = await ghApi.getRepos();
+
+      for (let i in repos) {
+        const image = await ghApi.getImage(
+          repos[i].name,
+          repos[i].default_branch
+        );
+        const usedLanguages = await ghApi.getUsedLanguage(
+          repos[i].languages_url
+        );
+
+        repos[i] = { ...repos[i], imageSrc: image, usedLanguages };
+      }
+
+      localStorage.setItem("repositories", JSON.stringify(repos));
+    }
+
+    loading.off();
+    return repos;
+  }
 
   async getRepos() {
     try {

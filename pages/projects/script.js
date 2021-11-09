@@ -1,32 +1,8 @@
 import { ghApi } from "../../scripts/api.js";
 
 (async () => {
-  async function requestData() {
-    let repos = JSON.parse(localStorage.getItem("repositories"));
-
-    if (repos === null || repos.length === 0) {
-      repos = await ghApi.getRepos();
-
-      for (let i in repos) {
-        const image = await ghApi.getImage(
-          repos[i].name,
-          repos[i].default_branch
-        );
-        const usedLanguages = await ghApi.getUsedLanguage(
-          repos[i].languages_url
-        );
-
-        repos[i] = { ...repos[i], imageSrc: image, usedLanguages };
-      }
-
-      localStorage.setItem("repositories", JSON.stringify(repos));
-    }
-
-    return repos;
-  }
-
   const container = document.getElementsByClassName("cards_container")[0];
-  const repos = await requestData();
+  const repos = await ghApi.getReposImagedAndLanguages();
 
   createCards(repos, container);
 })();
