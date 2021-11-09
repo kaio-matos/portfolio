@@ -1,6 +1,8 @@
 :root {
   /* RGB values */
   --text-color: 64, 64, 64;
+  /* --primary-color: 36, 36, 36;
+  --second-color: 75, 75, 75; */
   --primary-color: 0, 158, 255;
   --second-color: 89, 58, 154;
 

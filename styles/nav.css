@@ -3,12 +3,11 @@
   align-items: flex-start;
   grid-template: 100% / 1fr 1fr 1fr;
 
-  margin-top: 3rem;
-  padding: 0rem 3rem;
+  padding: 3rem 3rem;
 }
 
 .nav {
-  --ballSize: 40px;
+  --ballSize: 35px;
   --verticalDistance: calc(0.9 * var(--ballSize));
   --horizontalDistance: calc(1.2 * var(--ballSize));
 
