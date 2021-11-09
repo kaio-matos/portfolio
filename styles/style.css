@@ -1,8 +1,8 @@
 :root {
   /* RGB values */
   --text-color: 64, 64, 64;
-  --primary-color-blue: 0, 158, 255;
-  --primary-color-purple: 89, 58, 154;
+  --primary-color: 0, 158, 255;
+  --second-color: 89, 58, 154;
 
   --neutral-color: #ffffff;
   --error-color: #d74545;
@@ -12,8 +12,7 @@
 
   --page-transition-offset: 45vw;
 
-  --bg-gradient: rgb(var(--primary-color-blue)) 0%,
-    rgb(var(--primary-color-purple)) 100%;
+  --bg-gradient: rgb(var(--primary-color)) 0%, rgb(var(--second-color)) 100%;
 }
 
 * {
@@ -69,7 +68,7 @@ a {
   font-size: 5rem;
   width: fit-content;
   position: relative;
-  color: rgb(var(--primary-color-purple));
+  color: rgb(var(--second-color));
 }
 
 .page_title_bg::before {
