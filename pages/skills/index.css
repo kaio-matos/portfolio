@@ -1,0 +1,98 @@
+.skills {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  --image-width: 5.2rem;
+}
+
+.skills_title {
+  font-size: 3rem;
+  font-weight: lighter;
+}
+
+.techs_container {
+  margin-top: 1rem;
+}
+
+.sides_container {
+  display: flex;
+}
+
+/* Divisor */
+.sides_container hr {
+  border: 1px solid var(--neutral-color);
+  margin: 0 3rem;
+}
+
+.left_side,
+.right_side {
+  display: grid;
+  align-items: center;
+  grid-template: repeat(3, var(--image-width)) / 1fr auto;
+}
+
+/* Container that is outside the grid */
+.outside_container {
+  width: fit-content;
+  width: -moz-fit-content;
+  margin: auto;
+}
+
+.tech {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+/* Techs Images */
+.tech .tech_image {
+  border-radius: 1rem;
+  width: var(--image-width);
+}
+
+.tech_image {
+  padding: 0.625rem;
+  height: 100%;
+  background-color: var(--neutral-color);
+}
+
+/* Border Radius depending on situation */
+.tech_image:first-of-type {
+  border-radius: 1rem 1rem 0 0;
+}
+
+.tech_image:last-of-type {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.tech_image:only-of-type {
+  border-radius: 1rem;
+}
+
+.tech_name_container {
+  cursor: pointer;
+  position: relative;
+}
+
+.tech_name_container .baloon {
+  width: 20rem;
+  height: 10rem;
+  font-size: 1rem;
+  padding: 1rem;
+}
+
+.tech_name_container:hover .baloon,
+.tech_name_container:focus .baloon {
+  top: -11rem;
+  opacity: 1;
+  z-index: 1;
+  box-shadow: -3px 3px 5px rgba(0, 0, 0, 0.281);
+}
+
+/* Techs Names */
+.tech_name {
+  margin-left: 1rem;
+  font-size: 2.5rem;
+  transform: translateY(-10%); /* Font adjustment to align with your image */
+}

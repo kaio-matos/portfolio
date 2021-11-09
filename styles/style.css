@@ -70,6 +70,7 @@ a {
 .page_title {
   font-size: 5rem;
   width: fit-content;
+  width: -moz-fit-content;
   position: relative;
   color: rgb(var(--second-color));
 }
@@ -158,6 +159,7 @@ a {
 .snackbar {
   padding: 1rem;
   width: fit-content;
+  width: -moz-fit-content;
   border-radius: 1rem;
   font-weight: bold;
   opacity: 0;
