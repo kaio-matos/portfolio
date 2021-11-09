@@ -3,32 +3,25 @@ const links = [
     link: "/",
     connected: "down",
     text: "Home",
-    img: "../../assets/Home.svg",
+    img: window.location.origin + "/assets/Home.svg",
   },
   [
     [
       {
-        link: "../skills/skills.html",
+        link: window.location.origin + "/pages/skills/skills.html",
         text: "Habilidades | Desenvolvimento Web",
-        connected: "down",
       },
       {
-        link: "../projects/projects.html",
+        link: window.location.origin + "/pages/projects/projects.html",
         connected: "both",
         text: "Projetos",
       },
       {
-        link: "../formation/formation.html",
+        link: window.location.origin + "/pages/formation/formation.html",
         text: "Formação",
       },
     ],
-
-    [
-      {
-        link: "servidor",
-        text: "Habilidades | Servidor",
-      },
-    ],
+    [],
   ],
 ];
 
@@ -45,11 +38,11 @@ const nav = document.getElementsByClassName("nav")[0];
  */
 function CreateItems(links, element) {
   links.forEach((link) => {
-    if (link.length) {
+    if (Array.isArray(link)) {
       let insideColumn = false;
       let counter = 0;
 
-      links.forEach((link) => (link.length ? counter++ : counter));
+      links.forEach((link) => (Array.isArray(link) ? counter++ : counter));
       if (counter >= 2) insideColumn = true;
 
       const div = document.createElement("div");
