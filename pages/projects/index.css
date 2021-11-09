@@ -6,37 +6,80 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex-wrap: wrap;
-  gap: 3rem;
+
+  gap: 2.5rem;
   --name-color: #404040;
   padding: 1rem 2rem;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
+  --border-radius: 1rem 1rem 0 0;
   position: relative;
-
+  height: 15.75rem;
   width: 17.125rem;
-  height: 12.75rem;
 
   background-color: var(--neutral-color);
-  border-radius: 2rem 2rem 0 0;
+  border-radius: var(--border-radius);
   cursor: pointer;
+  transform-style: preserve-3d;
+  transition: 750ms;
+}
 
-  transition: 1s;
+.card_front {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  backface-visibility: hidden;
+
+  transition: opacity 1s;
+}
+
+.card_back {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+
+  width: 100%;
+  height: 100%;
+  transform: rotateY(180deg);
+  pointer-events: none;
+
+  z-index: -1;
+  box-shadow: 0rem 3rem 50px 5px rgba(0, 0, 0, 0.363);
+  transition: transform 500ms, opacity 1s;
+}
+
+.card_flip {
+  transform: rotateY(180deg) scale(1.1);
+  z-index: 1000;
+}
+
+.card_flip > .card_back {
+  pointer-events: all; /* Correcting bug when we can click without flip the card */
+  opacity: 1;
+}
+
+.card_flip > .card_front {
+  opacity: 0;
 }
 
 .card_image_container {
   display: flex;
   align-items: center;
   justify-content: center;
+
   background-color: var(--neutral-color);
 
-  height: 10rem;
+  height: 100%;
   position: relative;
   overflow: hidden;
-  border-radius: 2rem 2rem 0 0;
 }
 
 .card_image_container img {
@@ -45,34 +88,58 @@ body {
   height: 100%;
 }
 
+.card_title {
+  font-size: 150%;
+}
+
+.card_back .card_title {
+  margin-bottom: 1rem;
+}
+.card_back .card_info {
+  border-radius: var(--border-radius);
+  min-width: 80%;
+  padding: 2.5rem;
+}
+
 .card_info {
+  width: 100%;
   text-align: center;
   padding: 0.9rem;
   background-color: var(--neutral-color);
 }
 
-.card_title {
-  font-size: 2rem;
+.card_languages_list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  list-style-type: none;
+
+  margin: 1rem 0;
+  gap: 1rem;
 }
 
-.text_gray {
-  color: var(--name-color);
-}
+.card_info a {
+  position: relative;
+  padding: 1rem;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  color: rgb(var(--primary-color-blue));
 
-.card_hover {
+  transition: 1s;
+}
+.card_info a::after {
+  content: "";
   position: absolute;
-  opacity: 0;
+  left: 25%;
+  bottom: 0;
+  background-color: rgb(var(--primary-color-blue));
+  width: 0%;
+  height: 2px;
 
-  width: 100%;
-  z-index: 500;
-
-  box-shadow: 0rem 3rem 50px 5px rgba(0, 0, 0, 0.363);
-  transition: transform 500ms, opacity 250ms;
+  transition: 500ms;
 }
 
-.card_hover:hover,
-.card:hover .card_hover {
-  z-index: 1000;
-  transform: scale(1.05);
-  opacity: 1;
+.card_info a:hover::after {
+  width: 50%;
 }

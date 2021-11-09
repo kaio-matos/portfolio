@@ -12,8 +12,11 @@ import { ghApi } from "../../scripts/api.js";
           repos[i].name,
           repos[i].default_branch
         );
+        const usedLanguages = await ghApi.getUsedLanguage(
+          repos[i].languages_url
+        );
 
-        repos[i] = { ...repos[i], imageSrc: image };
+        repos[i] = { ...repos[i], imageSrc: image, usedLanguages };
       }
 
       localStorage.setItem("repositories", JSON.stringify(repos));
@@ -30,19 +33,35 @@ import { ghApi } from "../../scripts/api.js";
 
 function createCards(repos, element) {
   repos.forEach(async (repo) => {
-    const card = Card(repo);
-    card.appendChild(HoverCard(repo));
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    card.appendChild(CardFront(repo));
+    card.appendChild(CardBack(repo));
+
+    card.addEventListener("click", () => {
+      const cards = document.getElementsByClassName("card");
+
+      Array.from(cards).forEach((crd) => {
+        if (card === crd) {
+          card.classList.toggle("card_flip");
+        } else {
+          crd.classList.remove("card_flip");
+        }
+      });
+    });
+
     element.appendChild(card);
   });
 }
 
-function Card({ name, description, imageSrc }) {
+function CardFront({ name, imageSrc }) {
   // Containers
-  const card = document.createElement("div");
+  const front = document.createElement("div");
   const cardImageContainer = document.createElement("div");
   const cardInfo = document.createElement("div");
 
-  card.classList.add("card");
+  front.classList.add("card_front");
   cardImageContainer.classList.add("card_image_container");
   cardInfo.classList.add("card_info");
 
@@ -55,61 +74,39 @@ function Card({ name, description, imageSrc }) {
 
   cardInfo.appendChild(h2);
 
-  card.appendChild(cardImageContainer);
-  card.appendChild(cardInfo);
-  return card;
+  front.appendChild(cardImageContainer);
+  front.appendChild(cardInfo);
+
+  return front;
 }
 
-function HoverCard({
-  name,
-  description,
-  topics,
-  homepage,
-  language,
-  imageSrc,
-}) {
+function CardBack({ name, description, homepage, usedLanguages }) {
   // Containers
-  const card = document.createElement("div");
-  const cardImageContainer = document.createElement("div");
+  const back = document.createElement("div");
   const cardInfo = document.createElement("div");
 
-  card.classList.add("card_hover");
-  cardImageContainer.classList.add("card_image_container");
+  back.classList.add("card_back");
   cardInfo.classList.add("card_info");
-
-  // Image
-  const img = CardImage(imageSrc, name);
-  cardImageContainer.appendChild(img);
 
   // Infos
   const h2 = CardTitle(name);
   const descriptionDiv = CardDescription(description);
+  const anchor = document.createElement("a");
+  anchor.classList.add("text");
+  anchor.target = "_blank";
+  anchor.href = homepage;
+
+  const languageList = CardLanguageList(Object.keys(usedLanguages));
+
+  anchor.appendChild(document.createTextNode("Página"));
 
   cardInfo.appendChild(h2);
   cardInfo.appendChild(descriptionDiv);
+  cardInfo.appendChild(languageList);
+  cardInfo.appendChild(anchor);
 
-  card.appendChild(cardImageContainer);
-  card.appendChild(cardInfo);
-  return card;
-}
-
-function CardDescription(description) {
-  const descriptionDiv = document.createElement("div");
-  const descText = document.createTextNode(description);
-
-  descriptionDiv.appendChild(descText);
-  descriptionDiv.classList.add("card_description", "text_gray", "text");
-  return descriptionDiv;
-}
-
-function CardTitle(name) {
-  const h2 = document.createElement("h2");
-  const title = document.createTextNode(name);
-
-  h2.appendChild(title);
-  h2.classList.add("card_title", "title", "text_gray");
-
-  return h2;
+  back.appendChild(cardInfo);
+  return back;
 }
 
 function CardImage(link, name) {
@@ -125,4 +122,66 @@ function CardImage(link, name) {
     span.appendChild(text);
     return span;
   }
+}
+
+function CardTitle(name) {
+  const h2 = document.createElement("h2");
+
+  let adjustedName = "";
+  for (let i = 0; i < name.length; i++) {
+    if (name[i] === "-") {
+      adjustedName += " ";
+    } else {
+      adjustedName += name[i];
+    }
+  }
+
+  const title = document.createTextNode(adjustedName);
+
+  h2.appendChild(title);
+  h2.classList.add("card_title", "title", "text_gray");
+
+  return h2;
+}
+
+function CardDescription(description) {
+  const descriptionDiv = document.createElement("div");
+  const descText = document.createTextNode(description);
+
+  descriptionDiv.appendChild(descText);
+  descriptionDiv.classList.add("card_description", "text_gray", "text");
+  return descriptionDiv;
+}
+
+function CardLanguageList(languages) {
+  const ul = document.createElement("ul");
+  ul.classList.add("text", "card_languages_list");
+
+  languages.forEach((language) => {
+    const li = document.createElement("li");
+    const text = document.createTextNode(language);
+    li.appendChild(text);
+
+    switch (language) {
+      case "JavaScript":
+        li.style.color = "#a89502";
+        break;
+      case "CSS":
+        li.style.color = "#009EFF";
+        break;
+      case "HTML":
+        li.style.color = "#E34C27";
+        break;
+      case "EJS":
+        li.style.color = "#A91E50";
+        break;
+
+      default:
+        li.style.color = "black";
+        break;
+    }
+    ul.appendChild(li);
+  });
+
+  return ul;
 }

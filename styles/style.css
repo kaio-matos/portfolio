@@ -22,6 +22,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
   min-height: 100vh;
   height: 100%;
@@ -103,6 +107,10 @@ a {
 
 .text_white {
   color: var(--neutral-color);
+}
+
+.text_gray {
+  color: var(--name-color);
 }
 
 .arrow_text {

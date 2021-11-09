@@ -15,7 +15,23 @@ class GithubAPI {
       return repos;
     } catch (err) {
       new Snackbar(
-        "Não foi possível buscar os repositórios",
+        "Ocorreu um erro ao buscar os repositórios",
+        "error"
+      ).showAndHide();
+
+      console.log(err);
+      return [];
+    }
+  }
+
+  async getUsedLanguage(languages_url) {
+    try {
+      const raw = await fetch(languages_url);
+      const usedLanguages = await raw.json();
+      return usedLanguages;
+    } catch (err) {
+      new Snackbar(
+        "Ocorreu um erro ao buscar as linguagens utilizadas",
         "error"
       ).showAndHide();
 
